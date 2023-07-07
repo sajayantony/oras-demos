@@ -39,7 +39,7 @@ run "oras attach $REPO@$(oras discover localhost:5000/busybox:stable -o tree | s
 
 desc "Lets repeat that for one more level"
 run "oras attach $REPO@$(oras discover localhost:5000/busybox:stable -o tree | sed -n 's/.*\(sha256:[a-f0-9]\+\)$/\1/p' | tail -1) \\
-    --artifact-type application/demo --annotation level=2"
+    --artifact-type application/demo --annotation level=3"
 
 desc "Lets view the state of the attachments using discover"
 run "oras discover -v -o tree localhost:5000/busybox:stable"
