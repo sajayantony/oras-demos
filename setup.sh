@@ -25,11 +25,6 @@
 . $(dirname ${BASH_SOURCE})/util.sh
 
 desc "Setup a demo registry on port 5000"
-# run  "docker run \\ 
-#    -d --restart=always -p '127.0.0.1:5000:5000' \\
-#    --name 'demo_registry' \\
-#    ghcr.io/project-zot/zot-minimal-linux-amd64:latest"
-
 run "docker run \\
     -d -p 5000:5000 --name 'demo_registry' \\
     ghcr.io/project-zot/zot-minimal-linux-amd64:latest"
