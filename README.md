@@ -19,7 +19,7 @@ This is a collection of demo to show features of [ORAS][oras]. The demo insterac
 
  [![asciicast](https://asciinema.org/a/cyiOnDF0qpvw6rzSeOd8N2RAo.svg)](https://asciinema.org/a/cyiOnDF0qpvw6rzSeOd8N2RAo)
 
-## Credit
+## Credits
 
 The demo is based of @thockin's [micro-demos]
 
