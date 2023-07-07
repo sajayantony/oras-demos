@@ -17,6 +17,8 @@ This is a collection of demo to show features of [ORAS][oras]. The demo insterac
 
  You can remove the registry by running `reset.sh` which will remove the registry container , named `demo_registry` and all artifacts that have been pushed to it.
 
+ [![asciicast](https://asciinema.org/a/cyiOnDF0qpvw6rzSeOd8N2RAo.svg)](https://asciinema.org/a/cyiOnDF0qpvw6rzSeOd8N2RAo)
+
 ## Credit
 
 The demo is based of @thockin's [micro-demos]
