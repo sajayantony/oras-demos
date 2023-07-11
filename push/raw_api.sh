@@ -21,16 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-clear
+
 . $(dirname ${BASH_SOURCE})/../util.sh
 
-desc "Lets create a text file to push to the registry"
-run "echo 'Hello World' > hello.txt"
+desc "Lets see the catalog API to get the repositories"
+run "curl -qs localhost:5000/v2/_catalog | jq"
 
-run "cat hello.txt"
-
-desc "Lets push the file to the registry"
-run "oras push localhost:5000/hello:latest hello.txt"
-
-desc "Lets view the manifest"
-run "oras manifest get --pretty localhost:5000/hello:latest"
+desc "Lets see the tags API to get the tags for a repository"
+run "curl -qs localhost:5000/v2/hello/tags/list | jq"

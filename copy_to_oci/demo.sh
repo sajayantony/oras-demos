@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 
-
+clear
 . $(dirname ${BASH_SOURCE})/../util.sh
 
 desc "Copy an image from docker hub to a local oci layout"

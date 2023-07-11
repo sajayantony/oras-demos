@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
+clear
 . $(dirname ${BASH_SOURCE})/../util.sh
 
 desc "Lets create a text file to push to the registry"
@@ -30,10 +30,21 @@ run "echo 'Hello World' > hello.txt"
 run "cat hello.txt"
 
 desc "Lets push the file to the registry"
-run "oras push localhost:5000/hello:latest hello.txt"
+run "oras push localhost:5000/hello:latest --artifact-type application/example hello.txt"
 
 desc "Lets verify that the repository exists"
 run "oras repo list localhost:5000"
 
 desc "Now what are the available tags for this repository"
 run "oras repo tags localhost:5000/hello"
+
+desc "Lets take a look at the manifest"
+run "oras manifest get localhost:5000/hello:latest --pretty"
+
+desc "Lets now remove the file"
+run "rm hello.txt"
+
+desc "Lets pull the file from the registry"
+run "oras pull localhost:5000/hello:latest"
+
+run "cat hello.txt"
