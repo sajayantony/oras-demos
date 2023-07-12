@@ -23,33 +23,10 @@
 
 clear
 . $(dirname ${BASH_SOURCE})/../util.sh
+desc "Get the digest of the image using the registry API"
+run "curl -s -I -H 'Accept: application/vnd.oci.image.manifest.v1+json' http://localhost:5000/v2/hello-world/manifests/latest"
 
-desc "Lets build a simple OCI image"
-
-run "cat $(relative Dockerfile)"
-run "docker buildx build --output=type=oci,dest=$(relative image.tar) \\
-    -t localhost:5000/hello-world:latest \\
-    -f $(relative Dockerfile) ."
-
-
-desc "Lets push the image to the registry"
-run "oras copy --from-oci-layout $(relative image.tar):latest \\
-    localhost:5000/hello-world:latest"
-
-
-desc "Lets create a simple artifact to attach"
-run "echo 'Hello World' > $(relative hello.txt)"
-
-desc "Lets now specify the artifact and push to the registry" 
-run "oras attach localhost:5000/hello-world:latest \\
-    --artifact-type application\\example \\
-    $(relative hello.txt)"
-
-desc "Lets view the state of the attachments using discover"
-run "oras discover -o tree localhost:5000/hello-world:latest"
-
-desc "Lets now get the attached manifest reference"
-run "oras manifest get --pretty \\
-    localhost:5000/hello-world@$(oras discover localhost:5000/hello-world:latest -o tree | sed -n 's/.*\(sha256:[a-f0-9]\+\)$/\1/p' | tail -1)"
-
-
+export digest="$(curl -s -I -H 'Accept: application/vnd.oci.image.manifest.v1+json' http://localhost:5000/v2/hello-world/manifests/latest  | sed -n 's/Docker-Content-Digest: sha256:\(.*\)/\1/p')"
+export URL="http://localhost:5000/v2/hello-world/manifests/${digest}"
+desc "Lets now call the referrers API using the digest $digest"
+run  "curl -sq  $url | jq ."
