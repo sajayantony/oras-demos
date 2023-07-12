@@ -42,7 +42,7 @@ run "echo 'Hello World' > $(relative hello.txt)"
 
 desc "Lets now specify the artifact and push to the registry" 
 run "oras attach localhost:5000/hello-world:latest \\
-    --artifact-type application\\example \\
+    --artifact-type application/example \\
     $(relative hello.txt)"
 
 desc "Lets view the state of the attachments using discover"
