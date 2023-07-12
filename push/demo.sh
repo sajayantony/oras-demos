@@ -30,7 +30,8 @@ run "echo 'Hello World' > hello.txt"
 run "cat hello.txt"
 
 desc "Lets push the file to the registry"
-run "oras push localhost:5000/hello:latest --artifact-type application/example hello.txt"
+run "oras push localhost:5000/hello:latest \\
+    --artifact-type application/example hello.txt"
 
 desc "Lets verify that the repository exists"
 run "oras repo list localhost:5000"
