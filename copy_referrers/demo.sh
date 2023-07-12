@@ -22,13 +22,14 @@
 # SOFTWARE.
 
 
+clear
 . $(dirname ${BASH_SOURCE})/../util.sh
 
 
 desc "Lets copy an OCI image to the registry"
 run "oras copy zothub.io/tools/busybox:stable localhost:5000/busybox:stable"
 
-desc "There are 3 files we are going to attach to the image"
+desc "Lets make a few annotation attachments to the image"
 
 export REPO="localhost:5000/busybox"
 run "oras attach "$REPO":stable --artifact-type application/demo --annotation level=1"

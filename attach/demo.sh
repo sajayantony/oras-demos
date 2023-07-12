@@ -53,3 +53,8 @@ run "oras manifest get --pretty \\
     localhost:5000/hello-world@$(oras discover localhost:5000/hello-world:latest -o tree | sed -n 's/.*\(sha256:[a-f0-9]\+\)$/\1/p' | tail -1)"
 
 
+desc "Lets' now copy the image and attachments to a new repository"
+run "oras copy --recursive localhost:5000/hello-world:latest localhost:5000/hello-world-prod:latest"
+
+desc "Lets view the tree in the new repository"
+run "oras discover -o tree localhost:5000/hello-world-prod:latest"

@@ -47,7 +47,7 @@ function run() {
     if [ -n "$DEMO_RUN_FAST" ]; then
        echo "$green$1$reset" | pv -qL 1000 
     else 
-     echo "$reset$1$reset" | pv -qL $[11+(-2 + RANDOM%5)]
+     echo "$reset$1$reset" | pv -qL $[10+(-2 + RANDOM%5)]
     fi
   
     if [ -n "$DEMO_RUN_FAST" ]; then
